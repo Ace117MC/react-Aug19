@@ -10,18 +10,22 @@ class Input extends React.Component {
                 {
                     id: 0,
                     name: "item1",
+                    done: false
                 },
                 {
                     id: 1,
                     name: "item2",
+                    done: true
                 },
                 {
                     id: 2,
                     name: "item3",
+                    done: false
                 },
                 {
                     id: 3,
                     name: "item4",
+                    done: true
                 }
             ],
             userInput: ""
@@ -38,7 +42,8 @@ class Input extends React.Component {
         this.setState({
             list: [...this.state.list, {
                 id: this.state.list.length - 1,
-                name: this.state.userInput
+                name: this.state.userInput,
+                done: false
             }]
         })
     }
@@ -49,15 +54,33 @@ class Input extends React.Component {
         }, () => console.log(this.state))
     }
 
+    delall = () => {
+        this.setState({
+            list: []
+        })
+    }
+
+    clear = () => {
+        this.setState({
+            list : this.state.list.filter((item) => !item.done)
+        })
+    }
+
+    toggledone = (event) => {
+        this.setState({
+            
+        })
+    }
+
     render() {
         return (
             <div>
                 <form>
                     <input type='text' name='userInput' className='form-control input' onChange={this.handleChange} />
                 </form>
-                <Button handleClick={this.handleClick} />
+                <Button handleClick={this.handleClick} delall={this.delall} cleardone={this.clear}/>
                 <ul className='list-group' style={{ margin: "3vh" }}>
-                    <List items={this.state.list} />
+                    <List items={this.state.list} toggle={this.toggledone}/>
                 </ul>
             </div>
         )

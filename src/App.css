@@ -25,3 +25,8 @@
   width:50vh;
   margin:5vh;
 }
+
+.done {
+  text-decoration: line-through;
+  color: #6c757d;
+}
