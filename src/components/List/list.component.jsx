@@ -7,7 +7,7 @@ const List = (props) => (
                 return (
                     <li className='list-group-item' style={{margin: "2vh"}}>
                         <div className="row">
-                            <span className={item.done?'done col-4':'col-4'} onClick={() => props.handleToggle(item)}>{item.name} </span>
+                            <span className={item.done?'col-4 done':'col-4'} onClick={() => props.handleToggle(item)}>{item.name} </span>
                             <button className="btn btn-primary" onClick={() => props.handleDelete(item)}>Remove Item</button>
                         </div>
                     </li>

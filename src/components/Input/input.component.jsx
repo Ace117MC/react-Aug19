@@ -74,13 +74,19 @@ class Input extends React.Component {
     }
 
     handleToggle = (todo) => {
-        let todolist = this.state.list.map((item) => {
-            if(item.id === todo.id) item.done = !item.done
-            return item
-        })
-        this.setState({
-            list: todolist
-        })
+        // let todolist = this.state.list.map((item) => {
+        //     if(item.id === todo.id) item.done = !item.done
+        //     return item
+        // })
+        // this.setState({
+        //     list: todolist
+        // })
+        this.setState((state) => ({
+            list : this.state.list.map(item => {
+                if(todo.id === item.id) item.done = !item.done
+                return item
+            })
+        }))
     }
 
     render() {
@@ -90,9 +96,11 @@ class Input extends React.Component {
                     <input type='text' name='userInput' className='form-control input' onChange={this.handleChange} />
                 </form>
                 <Button handleClick={this.handleClick} delall={this.delall} cleardone={this.clear}/>
-                <ul className='list-group' style={{ margin: "3vh" }}>
-                    <List items={this.state.list} handleDelete={this.handleDelete} handleToggle={this.handleToggle}/>
-                </ul>
+                <div className="">
+                    <ul className='list-group' style={{ margin: "3vh" }}>
+                        <List items={this.state.list} handleDelete={this.handleDelete} handleToggle={this.handleToggle}/>
+                    </ul>
+                </div>
             </div>
         )
     }
